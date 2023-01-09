@@ -1,0 +1,38 @@
+.DashboardNav {
+  width: 300px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: #151f29;
+  transition: 0.2s ease;
+}
+
+.DashboardNav-top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 18px;
+  border-bottom: 1px solid #636970;
+}
+
+.DashboardNav-top img {
+  width: 30px;
+  padding-right: 30px;
+  padding-left: 15px;
+}
+
+.DashboardNav-top span {
+  padding: 4px;
+  padding-right: 11px;
+  padding-left: 11px;
+  border-radius: 2px;
+  background-color: green;
+  font-weight: 500;
+  font-size: 0.8em;
+}
+
+.DashboardNav-Menu {
+  padding: 40px;
+  padding-top: 50px;
+}

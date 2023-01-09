@@ -1,0 +1,15 @@
+.SectionTitle {
+  font-weight: bold;
+  font-size: 1.8em;
+  padding-top: 65px;
+  padding-bottom: 30px;
+  position: relative;
+}
+
+.SectionTitle-right {
+  position: absolute;
+  font-size: 0.5em !important;
+  right: 0;
+  top: 50%;
+  transform: translate(0, 50%);
+}

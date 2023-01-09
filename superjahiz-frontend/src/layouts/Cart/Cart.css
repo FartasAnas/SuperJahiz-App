@@ -1,0 +1,91 @@
+.Cart {
+  font-family: "Open Sans", sans-serif;
+  width: 1350px;
+  margin: auto;
+  min-height: 100vh;
+}
+
+table {
+  width: 80%;
+  text-align: left;
+}
+
+.Cart-row {
+  padding-top: 20px;
+}
+
+td,
+tr {
+  margin-top: 25px;
+  border-bottom: 1px solid #e3e5e8;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-weight: 500;
+}
+
+.Cart-body {
+  display: flex;
+  align-items: flex-start;
+}
+
+.Cart-body-details-summary,
+.Cart-body-details-total {
+  background-color: #f8f8fa;
+  padding: 22px;
+  width: 300px;
+  margin: 10px;
+}
+
+.Cart-body-details-title {
+  font-weight: bold;
+  font-size: 0.9em;
+  margin-bottom: 22px;
+}
+
+.Cart-body-details-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.Cart-body-details-info:last-child {
+  margin-bottom: 0px;
+}
+.Cart-body-details-info-title {
+  font-size: 0.85em;
+  font-weight: 600;
+  color: #a7a7a9;
+}
+
+.Cart-body-details-info-value {
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+.Cart-body-details-info-checkout {
+  padding: 12px 20px 12px 20px;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.Cart-body-details-info-CheckoutContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Cart-row-deleteButton:hover {
+  color: #d81b21;
+}
+
+.Cart-row-deleteButton {
+  color: #a7a7a9;
+  font-size: 0.8em;
+  padding-right: 10px;
+  padding-left: 10px;
+  transition: 0.2s ease;
+  cursor: pointer;
+}

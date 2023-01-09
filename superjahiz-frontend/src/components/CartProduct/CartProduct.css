@@ -1,0 +1,18 @@
+.CartProduct-pic {
+  width: 50px;
+  height: 50px;
+  aspect-ratio: 1;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.CartProduct {
+  display: flex;
+}
+
+.CartProduct-id {
+  font-size: 0.7em;
+  color: #7e7e91;
+}

@@ -1,0 +1,81 @@
+.AppProduct-form {
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+}
+
+.AppProduct-form input,
+.AppProduct-form select {
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  padding: 10px;
+  width: 450px;
+  height: 40px;
+  font-size: 1em;
+  background-color: #f8f9fd;
+  font-weight: bold;
+  font-family: "open sans", sans-serif;
+  padding-left: 25px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.AppProduct-form input::placeholder {
+  color: #6d7074;
+}
+
+.AppProduct-form select {
+  width: 100%;
+  height: 60px;
+}
+
+.AppProduct-form label {
+  width: 100%;
+  height: 60px;
+  font-weight: bold;
+}
+
+.AppProduct-form button {
+  width: 100%;
+  height: 60px;
+  font-weight: 500;
+  margin-top: 30px;
+  font-size: 1.1em;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+}
+
+.AppProduct-form-separator {
+  width: 1px;
+  height: 550px;
+  background-color: #a8a7a9;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.specInput {
+  width: 220px !important;
+  margin-right: 10px !important;
+}
+.UploadButton {
+  background-color: red;
+  padding-top: 17px;
+  width: 255px !important;
+  height: 42px !important;
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+}
+
+.picturePreview {
+  position: absolute;
+  top: 0;
+  right: -69px;
+  width: 59px;
+  border-radius: 3px;
+}

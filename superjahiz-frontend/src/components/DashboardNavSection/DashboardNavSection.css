@@ -1,0 +1,27 @@
+.DashboardNavSection {
+  color: #979b9f;
+  font-weight: 400;
+  font-size: 1.1em;
+}
+
+.DashboardNavSection-title,
+.DashboardNavSection-page {
+  padding-bottom: 20px;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.DashboardNavSection-page {
+  padding-left: 20px;
+}
+
+.DashboardNavSection-title:hover,
+.DashboardNavSection-page:hover {
+  color: white;
+}
+
+.DashboardNavSection-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

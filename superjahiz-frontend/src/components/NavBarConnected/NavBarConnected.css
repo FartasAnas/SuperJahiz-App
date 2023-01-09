@@ -1,0 +1,14 @@
+.NavBarConnected {
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+  margin-right: 10px;
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+.NavBarConnected-cart-icon,
+.NavBarConnected-user-icon {
+  font-size: 0.8em;
+  margin-left: 5px;
+}

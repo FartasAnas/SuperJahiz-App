@@ -1,0 +1,23 @@
+.Footer {
+  border-top: 1px solid #d8dfe7;
+  width: 100%;
+  background-color: white;
+  padding: 25px;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  padding-right: 200px;
+  display: flex;
+  box-sizing: border-box;
+  margin-top: 50px;
+  font-weight: 600;
+  justify-content: space-between;
+}
+
+.Footer-copyrightLogo {
+  width: 50px;
+  margin-bottom: 30px;
+}
+
+.Footer-copyrightText {
+  font-size: 0.85em;
+}

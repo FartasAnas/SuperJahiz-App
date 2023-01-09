@@ -1,0 +1,58 @@
+.ProductTile-picture {
+  width: 250px;
+  aspect-ratio: 1;
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 12px;
+  border-radius: 5px;
+  transition: 0.2s ease;
+}
+
+.ProductTile-PictureContainer {
+  width: 250px;
+  aspect-ratio: 1;
+  margin-bottom: 12px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.ProductTile-picture:hover {
+  transform: scale(1.2);
+}
+
+.ProductTile-name {
+  font-size: 0.85em;
+  font-weight: 600;
+  width: 100%;
+}
+
+.ProductTile {
+  position: relative;
+  height: 320px;
+  width: 250px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+.ProductTile-price {
+  position: absolute;
+  bottom: 0;
+  font-size: 0.8em;
+  color: #908f94;
+}
+
+.ProductTile-category {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 90px;
+  text-align: center;
+  padding-right: 5px;
+  padding-left: 5px;
+  border-radius: 2px;
+  font-weight: lighter;
+}
+
+.ProductTile-name-name {
+  width: 150px !important;
+}

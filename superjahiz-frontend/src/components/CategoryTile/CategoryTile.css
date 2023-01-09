@@ -1,0 +1,32 @@
+.CategoryTile {
+  height: 200px;
+  aspect-ratio: 1.618;
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+  border-radius: 3px;
+  position: relative;
+  background-position: center !important;
+  background-size: cover !important;
+  margin-bottom: 20px;
+  
+  cursor: pointer;
+}
+
+.CategoryTile-wrapper {
+  margin-right: 18px;
+}
+
+.CategoryTile-wrapper:nth-child(4n) {
+  margin-right: 0px!important;
+}
+
+.CategoryTile-content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.4em;
+  font-weight: 500;
+  color: white;
+}

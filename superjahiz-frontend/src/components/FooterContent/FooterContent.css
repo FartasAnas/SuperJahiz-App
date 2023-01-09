@@ -1,0 +1,14 @@
+.FooterContent p {
+  margin-bottom: 17px;
+  margin-top: 0;
+  font-size: 0.85em;
+}
+
+.FooterContent p:last-child {
+  margin-bottom: 0px;
+}
+
+.FooterContent-title {
+  font-weight: bold;
+  font-size: 0.85em;
+}
