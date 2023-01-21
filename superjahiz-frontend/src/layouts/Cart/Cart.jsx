@@ -10,10 +10,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { getCart } from "../../helpers/cartHelper";
 import { useNavigate, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addOrderLine } from "../../features/client/clientSlice";
 
 function Cart(props) {
   const [cart, setcart] = useState();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   if (
     window.localStorage.getItem("superJahiz.cart") === null ||
     window.localStorage.getItem("superJahiz.cart") === "null"
@@ -27,7 +30,12 @@ function Cart(props) {
       };
     }
   );
-
+  function handleCheckout() {
+    dispatch(addOrderLine());
+    localStorage.removeItem("superJahiz.cart");
+    setcart([]);
+    navigate("/");
+  }
   function handleDeleteFromCart(id) {
     console.log(id);
     let newCart = _.filter(
@@ -107,11 +115,11 @@ function Cart(props) {
     );
   }
   return (
-    <div className='app-page'>
+    <div className="app-page">
       <NavBar />
-      <div className='Cart'>
-        <SectionTitle text='Cart'></SectionTitle>
-        <div className='Cart-body'>
+      <div className="Cart">
+        <SectionTitle text="Cart"></SectionTitle>
+        <div className="Cart-body">
           <table>
             <br />
             <tr>
@@ -122,42 +130,44 @@ function Cart(props) {
             </tr>
             {renderCartProducts()}
           </table>
-          <div className='Cart-body-details'>
-            <div className='Cart-body-details-summary'>
-              <div className='Cart-body-details-title'>Order Summary</div>
-              <div className='Cart-body-details-info'>
-                <span className='Cart-body-details-info-title'>
+          <div className="Cart-body-details">
+            <div className="Cart-body-details-summary">
+              <div className="Cart-body-details-title">Order Summary</div>
+              <div className="Cart-body-details-info">
+                <span className="Cart-body-details-info-title">
                   Item(s) Total
                 </span>
-                <span className='Cart-body-details-info-value'>
+                <span className="Cart-body-details-info-value">
                   {Math.round(getTotalPrice() * 100) / 100 + " $"}
                 </span>
               </div>
-              <div className='Cart-body-details-info'>
-                <span className='Cart-body-details-info-title'>
+              <div className="Cart-body-details-info">
+                <span className="Cart-body-details-info-title">
                   Shipping Fee
                 </span>
-                <span className='Cart-body-details-info-value'>15 $</span>
+                <span className="Cart-body-details-info-value">15 $</span>
               </div>
             </div>
 
-            <div className='Cart-body-details-total'>
-              <div className='Cart-body-details-info'>
-                <span className='Cart-body-details-info-title'>
+            <div className="Cart-body-details-total">
+              <div className="Cart-body-details-info">
+                <span className="Cart-body-details-info-title">
                   Total Price
                 </span>
 
-                <span className='Cart-body-details-info-value'>
+                <span className="Cart-body-details-info-value">
                   {Math.round((getTotalPrice() + 15) * 100) / 100 + " $"}
                 </span>
               </div>
-              <div className='Cart-body-details-info-CheckoutContainer'>
+              <div className="Cart-body-details-info-CheckoutContainer">
                 <button
-                  className='Cart-body-details-info-checkout'
+                  onClick={handleCheckout}
+                  className="Cart-body-details-info-checkout"
                   style={{
                     backgroundColor: `${props?.AccentColor}`,
                     color: `${props?.ContrastColor}`,
-                  }}>
+                  }}
+                >
                   Checkout
                 </button>
               </div>

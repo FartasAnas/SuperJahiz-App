@@ -12,6 +12,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import pfe.api.superjahiz.entities.AppUser;
+import pfe.api.superjahiz.services.AppUserService;
 
 
 import javax.servlet.FilterChain;
@@ -30,8 +32,10 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;
 
-    public CustomAuthenticationFilter(AuthenticationManager authenticationManager) {
+    private final AppUserService appUserService;
+    public CustomAuthenticationFilter(AuthenticationManager authenticationManager,AppUserService appUserService) {
         this.authenticationManager = authenticationManager;
+        this.appUserService=appUserService;
     }
 
     @Override
@@ -56,6 +60,8 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                 .sign(algorithm);
 
         Map<String,Object> tokens =new HashMap<>();
+        AppUser appUser=appUserService.getAppUserByUsername(user.getUsername());
+        tokens.put("userId",appUser.getId());
         tokens.put("accessToken",accessToken);
         tokens.put("roles",user.getAuthorities());
         tokens.put("appuser",user.getUsername());

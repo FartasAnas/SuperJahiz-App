@@ -15,6 +15,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import pfe.api.superjahiz.security.filters.CustomAuthenticationFilter;
 import pfe.api.superjahiz.security.filters.CustomAuthorizationFilter;
+import pfe.api.superjahiz.services.AppUserService;
 import pfe.api.superjahiz.services.CustomUserDetailsService;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
@@ -23,6 +24,7 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomUserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    public final AppUserService appUserService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -30,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
+        CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean(),appUserService);
         customAuthenticationFilter.setFilterProcessesUrl("/login");
         http.csrf().disable();
         http.cors();
