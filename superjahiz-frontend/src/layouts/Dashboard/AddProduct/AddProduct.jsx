@@ -1,4 +1,5 @@
-import React from "react";
+import React,{useEffect} from "react";
+import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "../../../components/SearchBar/SearchBar";
 import "./AddProduct.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,10 +7,10 @@ import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import io from "socket.io-client";
 const socket = io.connect("http://localhost:3001");
 function AddProduct(props) {
+  const navigate=useNavigate();
   const [file, setFile] = React.useState(null);
   function handleChange(e) {
     console.log(e);
-    console.log("m alive");
     var inpt = document.querySelector("#formId");
     setFile(URL.createObjectURL(inpt.files[0]));
   }
@@ -62,50 +63,54 @@ function AddProduct(props) {
       inStock: inStock,
     };
     props.socket.emit("add-product", product);
-
+    navigate("/dashboard/products");
     console.log(product);
   }
   return (
-    <div className='AddProduct'>
-      <div className='MyProducts-header'>
-        <div className='MyProducts-header-right'>
-          <div className='MyProducts-header-title'>Add Product</div>
-          <div className='MyProducts-header-search'></div>
+    <div className="AddProduct">
+      <div className="MyProducts-header">
+        <div className="MyProducts-header-right">
+          <div className="MyProducts-header-title">Add Product</div>
+          <div className="MyProducts-header-search"></div>
         </div>
-        <div className='MyProducts-header-left'>
-          <div className='MyProducts-header-addProduct'>
-            <button
-              style={{
-                color: props.contrastColor,
-                backgroundColor: props.accentColor,
-              }}>
-              Product List
-            </button>
+        <div className="MyProducts-header-left">
+          <div className="MyProducts-header-addProduct">
+            <Link to="/dashboard/products">
+              <button
+                style={{
+                  color: props.contrastColor,
+                  backgroundColor: props.accentColor,
+                  cursor: "pointer",
+                }}
+              >
+                Product List
+              </button>
+            </Link>
           </div>
         </div>
       </div>
-      <div className='AppProduct-form'>
-        <div className='AppProduct-form-left'>
+      <div className="AppProduct-form">
+        <div className="AppProduct-form-left">
           <label>Product Name</label>
           <br />
           <input
-            type='text'
-            name='name'
-            placeholder='Eg: Leather shoes'
-            id='name'
+            type="text"
+            name="name"
+            placeholder="Eg: Leather shoes"
+            id="name"
           />
           <br />
           <label>Description</label>
           <br />
           <input
-            type='text'
-            placeholder='Eg: Best quality leather...'
-            id='description'
+            type="text"
+            placeholder="Eg: Best quality leather..."
+            id="description"
           />
           <br />
           <label>Category</label>
           <br />
-          <select className='MyProduct-select' id='category'>
+          <select className="MyProduct-select" id="category">
             {props?.categories?.map((category) => {
               return <option value={category?.id}>{category?.name}</option>;
             })}
@@ -113,16 +118,16 @@ function AddProduct(props) {
           <label>Price</label>
           <br />
           <input
-            type='number'
-            step='0.01'
-            name='price'
-            placeholder='Eg: 25.21'
-            id='price'
+            type="number"
+            step="0.01"
+            name="price"
+            placeholder="Eg: 25.21"
+            id="price"
           />
           <br />
           <label>In stock</label>
           <br />
-          <input type='number' placeholder={0} id='inStock' />
+          <input type="number" placeholder={0} id="inStock" />
 
           <br />
           <button
@@ -130,98 +135,101 @@ function AddProduct(props) {
             style={{
               backgroundColor: props.accentColor,
               color: props.contrastColor,
-            }}>
+              cursor: "pointer",
+            }}
+          >
             Add this product
           </button>
         </div>
-        <div className='AppProduct-form-separator'></div>
-        <div className='AppProduct-form-right'>
+        <div className="AppProduct-form-separator"></div>
+        <div className="AppProduct-form-right">
           <label>Product Specification 1</label>
           <br />
           <input
-            type='text'
-            name='name'
-            placeholder='Eg: Size'
-            className='specInput'
-            id='specName1'
+            type="text"
+            name="name"
+            placeholder="Eg: Size"
+            className="specInput"
+            id="specName1"
           />
           <input
-            type='text'
-            name='name'
-            placeholder='42'
-            className='specInput'
-            id='specValue1'
+            type="text"
+            name="name"
+            placeholder="42"
+            className="specInput"
+            id="specValue1"
           />
           <br />
           <label>Product Specification 2</label>
           <br />
           <input
-            type='text'
-            name='name'
-            placeholder='Eg: Color'
-            className='specInput'
-            id='specName2'
+            type="text"
+            name="name"
+            placeholder="Eg: Color"
+            className="specInput"
+            id="specName2"
           />
           <input
-            type='text'
-            name='name'
-            placeholder='Brown'
-            className='specInput'
-            id='specValue2'
+            type="text"
+            name="name"
+            placeholder="Brown"
+            className="specInput"
+            id="specValue2"
           />
           <br />
           <label>Product Specification 3</label>
           <br />
           <input
-            type='text'
-            name='name'
-            placeholder='Eg: Brand'
-            className='specInput'
-            id='specName3'
+            type="text"
+            name="name"
+            placeholder="Eg: Brand"
+            className="specInput"
+            id="specName3"
           />
           <input
-            type='text'
-            name='name'
-            placeholder='Gucci'
-            className='specInput'
-            id='specValue3'
+            type="text"
+            name="name"
+            placeholder="Gucci"
+            className="specInput"
+            id="specValue3"
           />
           <br />
           <label>Product Specification 4</label>
           <br />
           <input
-            type='text'
-            name='name'
-            placeholder='Eg: Hotel'
-            className='specInput'
-            id='specName4'
+            type="text"
+            name="name"
+            placeholder="Eg: Hotel"
+            className="specInput"
+            id="specName4"
           />
           <input
-            type='text'
-            name='name'
-            placeholder='Trivago'
-            className='specInput'
-            id='specValue4'
+            type="text"
+            name="name"
+            placeholder="Trivago"
+            className="specInput"
+            id="specValue4"
           />
           <br />
           <div>
             <label>Product Specification 4</label>
             <br />
             <label
-              htmlFor='formId'
-              className='UploadButton'
+              htmlFor="formId"
+              className="UploadButton"
               onChange={handleChange}
               style={{
                 backgroundColor: props.accentColor,
                 color: props.contrastColor,
-              }}>
-              <input name='' type='file' id='formId' hidden />
+              }}
+            >
+              <input name="" type="file" id="formId" hidden />
               <FontAwesomeIcon
                 icon={faArrowUp}
                 style={{ paddingRight: "20px" }}
               />{" "}
               Upload Product Picture
-              <img className='picturePreview' src={file} alt='tet' />
+              <img className="picturePreview" src={file} alt="tet" />
             </label>
           </div>
         </div>

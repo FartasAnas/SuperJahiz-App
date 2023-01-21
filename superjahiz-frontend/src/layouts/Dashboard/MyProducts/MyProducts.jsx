@@ -7,30 +7,28 @@ import _ from "lodash";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave, faTrash } from "@fortawesome/free-solid-svg-icons";
 function MyProducts(props) {
-
-  function saveItem(id){
-
-  }
+  function saveItem(id) {}
 
   function renderCartProducts() {
     return props?.products?.map((item) => {
       return (
-        <tr className='Cart-row' key={item.id}>
+        <tr className="Cart-row" key={item.id}>
           <td>
             <Link to={"/product/?id=" + item.id}>
               <CartProduct prod={item} />
             </Link>
           </td>
           <td>
-            <select Defaultvalue={item.category} className='MyProduct-select'>
+            <select Defaultvalue={item.category} className="MyProduct-select">
               {props.categories.map((category) => {
                 return (
                   <option
                     value={category.id}
                     selected={
-                      item.category.toUpperCase() ===
+                      item?.category?.name?.toUpperCase() ===
                       category.name.toUpperCase()
-                    }>
+                    }
+                  >
                     {category.name}
                   </option>
                 );
@@ -38,11 +36,11 @@ function MyProducts(props) {
             </select>
           </td>
           <td>{item.price + "$"}</td>
-          <td className='Cart-row-deleteButton' onClick={() => {}}>
-            <button className='MyProduct-button'>
+          <td className="Cart-row-deleteButton" onClick={() => {}}>
+            <button className="MyProduct-button">
               <FontAwesomeIcon icon={faTrash} />
             </button>
-            <button className='MyProduct-button'>
+            <button className="MyProduct-button">
               <FontAwesomeIcon icon={faSave} />
             </button>
           </td>
@@ -52,30 +50,34 @@ function MyProducts(props) {
   }
 
   return (
-    <div className='MyProducts'>
-      <div className='MyProducts-header'>
-        <div className='MyProducts-header-right'>
-          <div className='MyProducts-header-title'>Product List</div>
-          <div className='MyProducts-header-product-count'>
+    <div className="MyProducts">
+      <div className="MyProducts-header">
+        <div className="MyProducts-header-right">
+          <div className="MyProducts-header-title">Product List</div>
+          <div className="MyProducts-header-product-count">
             {props?.products?.length}
           </div>
-          <div className='MyProducts-header-search'>
+          <div className="MyProducts-header-search">
             <SearchBar />
           </div>
         </div>
-        <div className='MyProducts-header-left'>
-          <div className='MyProducts-header-addProduct'>
-            <button
-              style={{
-                color: props.contrastColor,
-                backgroundColor: props.accentColor,
-              }}>
-              Add Product
-            </button>
+        <div className="MyProducts-header-left">
+          <div className="MyProducts-header-addProduct">
+            <Link to="/dashboard/addProduct">
+              <button
+                style={{
+                  color: props.contrastColor,
+                  backgroundColor: props.accentColor,
+                  cursor: "pointer",
+                }}
+              >
+                Add Product
+              </button>
+            </Link>
           </div>
         </div>
       </div>
-      <div className='MyProducts-body'>
+      <div className="MyProducts-body">
         <table>
           <br />
           <tr>
