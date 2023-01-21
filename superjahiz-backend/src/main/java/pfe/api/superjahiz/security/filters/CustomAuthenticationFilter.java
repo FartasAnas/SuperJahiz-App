@@ -36,7 +36,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        String username = request.getParameter("email");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
         log.info("email: {}", username);
         log.info("password: {}", password);
@@ -50,7 +50,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
         String accessToken = JWT.create()
                 .withSubject(user.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 300000))//expire in 5min
+                .withExpiresAt(new Date(System.currentTimeMillis() + 300000*6))//expire in 5min
                 .withIssuer(request.getRequestURL().toString())
                 .withClaim("roles", user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
@@ -58,6 +58,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         Map<String,Object> tokens =new HashMap<>();
         tokens.put("accessToken",accessToken);
         tokens.put("roles",user.getAuthorities());
+        tokens.put("appuser",user.getUsername());
         response.setContentType(APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(),tokens);
     }

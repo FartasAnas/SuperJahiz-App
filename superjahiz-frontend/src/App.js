@@ -11,6 +11,9 @@ import { ToastContainer } from "react-toastify";
 import Cart from "./layouts/Cart/Cart";
 import Dashboard from "./layouts/Dashboard/Dashboard";
 import io from "socket.io-client";
+import LoginForm from "./components/LoginForm/LoginForm";
+import RequireAuth from "./features/RequireAuth";
+import Forbidden from "./components/Forbidden/Forbidden";
 const socket = io.connect("http://localhost:3001");
 function App() {
   const [categories, setCategories] = useState([]);
@@ -37,21 +40,35 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route
-          path='/home'
+          index
           element={
             <StoreFront
               Products={products}
               Categories={categories}
               AccentColor={accentColor}
-              ContrastColor={contrastColor}></StoreFront>
+              ContrastColor={contrastColor}
+            ></StoreFront>
           }
         />
         <Route
-          path='/categories'
+          path="/home"
+          element={
+            <StoreFront
+              Products={products}
+              Categories={categories}
+              AccentColor={accentColor}
+              ContrastColor={contrastColor}
+            ></StoreFront>
+          }
+        />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/forbidden" element={<Forbidden></Forbidden>}/>
+        <Route
+          path="/categories"
           element={<AllCategories Categories={categories} />}
         />
         <Route
-          path='/products'
+          path="/products"
           element={
             <Products
               Products={products}
@@ -62,7 +79,7 @@ function App() {
           }
         />
         <Route
-          path='/product'
+          path="/product"
           element={
             <ProductDetails
               Products={products}
@@ -73,7 +90,7 @@ function App() {
           }
         />
         <Route
-          path='/cart'
+          path="/cart"
           element={
             <Cart
               Products={products}
@@ -83,18 +100,20 @@ function App() {
             />
           }
         />
-        <Route
-          path='/dashboard/*'
-          element={
-            <Dashboard
-              Products={products}
-              Categories={categories}
-              AccentColor={accentColor}
-              ContrastColor={contrastColor}
-              socket={socket}
-            />
-          }
-        />
+        <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>
+          <Route
+            path="/dashboard/*"
+            element={
+              <Dashboard
+                Products={products}
+                Categories={categories}
+                AccentColor={accentColor}
+                ContrastColor={contrastColor}
+                socket={socket}
+              />
+            }
+          />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
