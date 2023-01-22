@@ -75,7 +75,7 @@ function AddCategory(props) {
               style={{ paddingRight: "20px" }}
             />{" "}
             Upload Category Picture
-            <img className="picturePreview" src={file} alt="tet" />
+            <img className="picturePreview" src={file}/>
           </label>
           <br />
           <button

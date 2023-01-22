@@ -229,7 +229,7 @@ function AddProduct(props) {
                 style={{ paddingRight: "20px" }}
               />{" "}
               Upload Product Picture
-              <img className="picturePreview" src={file} alt="tet" />
+              <img className="picturePreview" src={file}/>
             </label>
           </div>
         </div>

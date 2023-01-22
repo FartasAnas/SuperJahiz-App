@@ -79,6 +79,7 @@ io.on("connection", (socket) => {
     });
     console.log(data);
     //send the data to
+    socket.emit("get-products");
   });
   socket.on("add-category", async (data) => {
     //data.pictures[0].url is variable with an image buffer, save it to a file
@@ -98,6 +99,7 @@ io.on("connection", (socket) => {
     axios.post("http://localhost:8090/category/add", modData).then((res) => {
       console.log(res.data);
     });
+    socket.emit("get-categories");
   });
 });
 
