@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CartProduct from "../../../components/CartProduct/CartProduct";
 import SearchBar from "../../../components/SearchBar/SearchBar";
@@ -6,9 +6,19 @@ import "./MyProducts.css";
 import _ from "lodash";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave, faTrash } from "@fortawesome/free-solid-svg-icons";
+import http from "../../../app/http-common";
+import io from "socket.io-client";
 function MyProducts(props) {
   function saveItem(id) {}
-
+  async function handleDelete(id) {
+    try {
+      await http.delete(`/product/delete/${id}`);
+      props.setProducts(props.products.filter((product) => product.id !== id));
+      window.location.reload();
+    } catch (err) {
+      console.log("Error");
+    }
+  }
   function renderCartProducts() {
     return props?.products?.map((item) => {
       return (
@@ -37,7 +47,10 @@ function MyProducts(props) {
           </td>
           <td>{item.price + "$"}</td>
           <td className="Cart-row-deleteButton" onClick={() => {}}>
-            <button className="MyProduct-button">
+            <button
+              className="MyProduct-button"
+              onClick={() => handleDelete(item.id)}
+            >
               <FontAwesomeIcon icon={faTrash} />
             </button>
             <button className="MyProduct-button">
