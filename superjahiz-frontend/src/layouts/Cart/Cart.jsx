@@ -12,6 +12,8 @@ import { getCart } from "../../helpers/cartHelper";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addOrderLine } from "../../features/client/clientSlice";
+import axios from "axios";
+import Recommendations from "../../components/Recommendations/Recommendations";
 
 function Cart(props) {
   const [cart, setcart] = useState();
@@ -63,6 +65,7 @@ function Cart(props) {
     return prods;
   }
   function handleCountchange(count, id) {
+    console.log(props.products)
     let newCart = JSON.parse(window.localStorage.getItem("superJahiz.cart"));
     if (
       _.find(newCart, function (o) {
@@ -171,7 +174,9 @@ function Cart(props) {
                   Checkout
                 </button>
               </div>
+             
             </div>
+           <Recommendations products={props?.Products}/>
           </div>
         </div>
       </div>

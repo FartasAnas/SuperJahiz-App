@@ -1,0 +1,14 @@
+.recommendations-pictures{
+    width: 112px;
+    height: 112px;
+    background-size: cover;
+    border-radius: 4px;
+    background-position: center;
+}
+
+.recommendation-grid{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    width: auto;
+    grid-gap:20px;
+}
